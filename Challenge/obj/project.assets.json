@@ -214,9 +214,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenge\\Challenge.csproj",
-      "projectName": "Challenge",
-      "projectPath": "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenge\\Challenge.csproj",
+      "projectUniqueName": "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenge\\Challenge.bootstrapper.layer.api.csproj",
+      "projectName": "Challenge.bootstrapper.layer.api",
+      "projectPath": "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenge\\Challenge.bootstrapper.layer.api.csproj",
       "packagesPath": "C:\\Users\\Trabajo\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenge\\obj\\",
       "projectStyle": "PackageReference",
