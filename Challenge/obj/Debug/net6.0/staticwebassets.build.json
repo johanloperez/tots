@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "JtjPwZ/SW89nNGMqvDHaXR+8e7VCJhcd+AE7HdS2mR0=",
-  "Source": "Challenge",
-  "BasePath": "_content/Challenge",
+  "Hash": "oH1LbslPh8XT/7YD6aCPQnW7Uw+ffgyZvCfeppxOsbY=",
+  "Source": "Challenge.bootstrapper.layer.api",
+  "BasePath": "_content/Challenge.bootstrapper.layer.api",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
