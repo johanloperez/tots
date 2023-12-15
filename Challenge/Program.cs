@@ -1,16 +1,19 @@
-using challenge.domain.layer.api.Contracts;
 using challenge.domain.layer.api.Models.Options;
-using challenge.infrastructure.layer.api.ExternalApis.MicrosoftGraphApi;
-using challenge.infrastructure.layer.api.HttpRequest;
+using challenge.domain.layer.Models.Options;
 using challenge.infrastructure.layer.api;
-using challenge.bootstrapper.layer.api;
+using challenge.presentation.layer.api;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var token = builder.Configuration.GetSection("GetToken");
+var tokenDelegate = builder.Configuration.GetSection("Delegate");
 var urls = builder.Configuration.GetSection("URL");
 
 builder.Services.Configure<Token>(token);
+builder.Services.Configure<GetTokenDelegate>(tokenDelegate);
 builder.Services.Configure<Urls>(urls);
 
 var sectionUrls = urls.Get<Urls>();
@@ -23,6 +26,15 @@ builder.Services.AddHttpClient("token", options =>
 {
     ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; }
     
+});
+
+builder.Services.AddHttpClient("code", options =>
+{
+    options.BaseAddress = new Uri(sectionUrls.GetCode);
+}).ConfigurePrimaryHttpMessageHandler(_ => new HttpClientHandler
+{
+    ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; }
+
 });
 
 builder.Services.AddHttpClient("users", options =>
@@ -79,27 +91,73 @@ builder.Services.AddHttpClient("deleteEvents", options =>
 
 });
 
+    builder.Services.AddAuthentication().AddJwtBearer("Bearer", options =>
+    {
+    options.RequireHttpsMetadata = false;//En producción debe estar en true para usar https
+    options.SaveToken = false;
+
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidAudience = "https://graph.microsoft.com",
+        ClockSkew = TimeSpan.Zero
+    };
+        options.Authority = "https://sts.windows.net/cbc3158f-4cc3-4a36-b3d5-058b9f717782/";
+        options.Audience = "https://graph.microsoft.com";
+    });
 
 builder.Services.AddControllers();
+builder.Services.AddPresentationModule(builder.Configuration);
+builder.Services.AddInfrastructureModule(builder.Configuration);
+builder.Services.AddDomainModule(builder.Configuration);
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test for TOT", Version = "v1" });
 
-builder.Services.AddRepositories();
-builder.Services.AddServices();
-builder.Services.AddHelpers();
-builder.Services.AddExternalServices();
-builder.Services.AddSwagger();
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "JWT Authorization header using the Bearer scheme",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                },
+                new string[] { }
+            }
+        });
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
 
 var app = builder.Build();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseInfrastructureModule(builder.Configuration);
+app.UsePresentationModule(builder.Configuration);
+app.UseDomainModule(builder.Configuration);
+
 app.MapControllers();
 app.UseHttpsRedirection();
 

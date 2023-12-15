@@ -1,23 +1,27 @@
 ﻿
+using challenge.application.layer.api.Services.Calendars;
+using challenge.application.layer.api.Services.Users;
 using challenge.domain.layer.api.Contracts;
 using challenge.domain.layer.api.Domain.Dtos;
-using challenge.infrastructure.layer.api.HttpRequest;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace challenge.presentation.layer.api.Controllers
 {
     public class CalendarsControllers : BaseController
     {
-        private readonly IHttpService<dynamic> _iHttpGet;
-        public CalendarsControllers(IHttpService<dynamic> iHttpGet)
+        private readonly ICalendarServices _calendarService;
+
+        public CalendarsControllers(ICalendarServices calendarService)
         {
-            _iHttpGet = iHttpGet;
+            _calendarService = calendarService;
         }
 
-        [HttpGet("GetCalendars")]
-        public async Task<ActionResult<CalendarsDto>> GetCalendars()
+        [Authorize(AuthenticationSchemes = "Bearer")]
+        [HttpGet("GetCalendar")]
+        public async Task<ActionResult<CalendarsDto>> GetUsers([FromQuery] string user)
         {
-            return Ok();
+            return Ok(await _calendarService.GetCalendar(user));
         }
     }
 }

@@ -13,7 +13,7 @@ namespace challenge.domain.layer.api.Models.Response
         [JsonPropertyName("@odata.context")]
         public string ODataContext { get; set; }
 
-
+        [JsonPropertyName("value")]
         public List<User> Value { get; set; }
 
         public GetUsersResponse()

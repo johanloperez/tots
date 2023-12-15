@@ -1,7 +1,6 @@
 ﻿using challenge.application.layer.api.Services.Users;
 using challenge.domain.layer.api.Contracts;
 using challenge.domain.layer.api.Dtos;
-using challenge.infrastructure.layer.api.ExternalApis.MicrosoftGraphApi;
 
 namespace challenge.application.layer.api.Services.users
 {

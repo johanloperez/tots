@@ -12,7 +12,8 @@ namespace challenge.domain.layer.api.Contracts
     public interface IMicrosoftGraphApiService
     {
         Task<IEnumerable<UserDto>> GetAllUsers();
-        Task<IEnumerable<CalendarsDto>> GetCalendarByUser(string userId);
+        Task<CalendarsDto> GetCalendarByUser(string user);
+        Task<string> RequestAccessToken(string code);
         Task<IEnumerable<EventDto>> GetAllEventsByCalendar(string calendarId);
         Task<IEnumerable<dynamic>> CreaetEvent(string userId, string calendarId, RecurringEvent body);
         Task<IEnumerable<dynamic>> DeleteEvent(string eventId);

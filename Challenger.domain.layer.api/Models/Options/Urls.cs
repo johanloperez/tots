@@ -8,6 +8,7 @@
         public string GetEvents { get; set; }
         public string GetCalendars { get; set; }
         public string GetToken { get; set; }
+        public string GetCode { get; set; }
         public string GetUsers { get; set; }
 
         public Urls()
@@ -18,6 +19,7 @@
             GetEvents =
             GetCalendars =
             GetToken =
+            GetCode =
             GetUsers = string.Empty;
         }
     }

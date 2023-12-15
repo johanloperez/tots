@@ -1,5 +1,6 @@
 ﻿using challenge.application.layer.api.Services.Users;
 using challenge.domain.layer.api.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace challenge.presentation.layer.api.Controllers
@@ -13,6 +14,7 @@ namespace challenge.presentation.layer.api.Controllers
             _userService = userService;
         }
 
+        [Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet("GetUsers")]
         public async Task<ActionResult<UserDto>> GetUsers()
         {

@@ -17,7 +17,7 @@ namespace challenge.infrastructure.layer.api.HttpRequest
         {
             _httpClientFactory = httpClientFactory;
         }
-        public async Task<T> Post(string client, HttpContent body, AuthenticationHeaderValue? Auth = null, int? Timeout = null, Dictionary<string, string>? Headers = null)
+        public async Task<T> Post(string client, HttpContent body, AuthenticationHeaderValue? Auth = null, string? uri = null, int? Timeout = null, Dictionary<string, string>? Headers = null)
         {
             var httpClient = _httpClientFactory.CreateClient(client);
             httpClient.Timeout = TimeSpan.FromSeconds(Timeout ?? DefaultTimeout);
@@ -36,7 +36,7 @@ namespace challenge.infrastructure.layer.api.HttpRequest
                     httpClient.DefaultRequestHeaders.Add(Header.Key, Header.Value);
                 }
             }
-            var response = await httpClient.PostAsync(string.Empty, body);
+            var response = await httpClient.PostAsync(uri, body);
 
             if (response is null)
                 throw new Exception($"Error al intentar llamar al servidor: {httpClient.BaseAddress}");
@@ -44,7 +44,7 @@ namespace challenge.infrastructure.layer.api.HttpRequest
             var responseString = await response.Content.ReadAsStringAsync();
 
             if (!response.IsSuccessStatusCode)
-                throw new Exception("El uri: '" + response.RequestMessage.RequestUri.AbsoluteUri + "' respondió: " + responseString);
+                throw new Exception("El uri: '" + uri ?? httpClient.BaseAddress + "' respondió: " + responseString);
 
 
             var JsonContent = JsonSerializer.Deserialize<T>(responseString);
@@ -54,7 +54,7 @@ namespace challenge.infrastructure.layer.api.HttpRequest
 
             return JsonContent;
         }
-        public async Task<T> Get(string client, AuthenticationHeaderValue? Auth = null, int? Timeout = null, Dictionary<string, string>? Headers = null)
+        public async Task<T> Get(string client, AuthenticationHeaderValue? Auth = null, string? uri = null , int? Timeout = null, Dictionary<string, string>? Headers = null)
         {
             var httpClient = _httpClientFactory.CreateClient(client);
             httpClient.Timeout = TimeSpan.FromSeconds(Timeout ?? DefaultTimeout);
@@ -74,7 +74,7 @@ namespace challenge.infrastructure.layer.api.HttpRequest
                 }
             }
 
-            var response = await httpClient.GetAsync(string.Empty);
+            var response = await httpClient.GetAsync(uri);
 
             if (response.IsSuccessStatusCode)
             {
@@ -88,46 +88,7 @@ namespace challenge.infrastructure.layer.api.HttpRequest
             }
             else
             {
-                throw new Exception("El uri: '" + httpClient.BaseAddress + "' respondió: " + response.ReasonPhrase);
-            }
-        }
-
-        public async Task<IEnumerable<T>> GetList(string client, AuthenticationHeaderValue? Auth = null, int? Timeout = null, Dictionary<string, string>? Headers = null)
-        {
-            var httpClient = _httpClientFactory.CreateClient(client);
-            httpClient.Timeout = TimeSpan.FromSeconds(Timeout ?? DefaultTimeout);
-            httpClient.DefaultRequestHeaders.Accept.Clear();
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
-
-            if (Auth is not null)
-            {
-                httpClient.DefaultRequestHeaders.Authorization = Auth;
-            }
-
-            if (Headers != null && Headers.Count > 0)
-            {
-                foreach (KeyValuePair<string, string> Header in Headers)
-                {
-                    httpClient.DefaultRequestHeaders.Add(Header.Key, Header.Value);
-                }
-            }
-
-            var response = await httpClient.GetAsync(string.Empty);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var responseString = await response.Content.ReadAsStringAsync();
-                var JsonContent = JsonSerializer.Deserialize<T>(responseString);
-
-                List<T> result = new List<T>();
-                if (JsonContent is null)
-                    throw new Exception("Error al serializar respuesta");
-
-                return result;
-            }
-            else
-            {
-                throw new Exception("El uri: '" + httpClient.BaseAddress + "' respondió: " + response.ReasonPhrase);
+                throw new Exception("El uri: '" + uri ?? httpClient.BaseAddress + "' respondió: " + response.ReasonPhrase);
             }
         }
     }
