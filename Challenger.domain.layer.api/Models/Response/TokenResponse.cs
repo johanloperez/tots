@@ -1,4 +1,4 @@
-﻿namespace Challenge.bootstrapper.layer.api.Models.Response
+﻿namespace challenge.domain.layer.api.Models.Response
 {
     public class TokenResponse
     {

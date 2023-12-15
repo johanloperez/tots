@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Graph.Models;
 
-namespace Challenge.bootstrapper.layer.api.Models
+namespace challenge.domain.layer.api.Models
 {
     public class RecurringEvent
     {

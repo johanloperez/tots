@@ -1,8 +1,7 @@
-using challenge.bootstrapper.layer.api.Domain.Models.Request;
-using Challenge.bootstrapper.layer.api.Application;
 using Challenge.bootstrapper.layer.api.Controllers;
 using Challenge.bootstrapper.layer.api.Infrastructure.HttpRequest.Get;
 using Challenge.bootstrapper.layer.api.Infrastructure.HttpRequest.Post;
+using Challenge.bootstrapper.layer.api.Models;
 using Challenge.bootstrapper.layer.api.Models.Options;
 using Challenge.bootstrapper.layer.api.Models.Response;
 using Microsoft.AspNetCore.Authentication;
@@ -12,27 +11,42 @@ using Microsoft.Extensions.Options;
 using Microsoft.Identity.Client;
 using System.Net.Http.Headers;
 using System.Reflection;
-using System.Text;
-using System.Text.Json;
 
 namespace Challenge.Controllers
 {
     public class OutlookController : BaseController
     {
-        private readonly IHttpPost<dynamic> _ipostCreateEvent;
+        private readonly IHttpPost<TokenResponse> _ipost;
         private readonly IHttpGet<dynamic> _iget;
-        private readonly IRequestToken _requestToken;
-        public OutlookController(IHttpPost<dynamic> ipostCreateEvent, IHttpGet<dynamic> iget, IRequestToken requestToken)
+        private readonly Token _tokenOptions;
+        public OutlookController(IHttpPost<TokenResponse> ipost, IHttpGet<dynamic> iget, IOptions<Token> tokenOptions)
         {
-            _ipostCreateEvent = ipostCreateEvent;
+            _ipost = ipost;
             _iget = iget;
-            _requestToken = requestToken;
+            _tokenOptions = tokenOptions.Value;
+
         }
 
-        [HttpPost("CreateEvents")]
-        public async Task<IActionResult> CreateEvents([FromBody] RecurringEventRequest request)
+        [HttpGet("CreateEvents")]
+        public async Task<IActionResult> CreateEvents()
         {
-            var bodyEvent = new RecurringEventRequest()
+            Dictionary<string, string> bodyData = new()
+            {
+                {"grant_type",_tokenOptions.GrantType },
+                {"client_id",_tokenOptions.ClientId },
+                {"client_secret",_tokenOptions.ClientSecret },
+                {"scope",_tokenOptions.Scope },
+                {"tenant",_tokenOptions.Tenant },
+            };
+
+            var bodyToken = new FormUrlEncodedContent(bodyData);
+
+            var JsonContent = await _ipost.Request("token", bodyToken);
+
+            if (JsonContent.access_token is null)
+                throw new Exception("código inválido");
+
+            var bodyEvent = new RecurringEvent()
             {
                 Subject = "Let's go for lunch",
                 Body = new ItemBody
@@ -86,16 +100,22 @@ namespace Challenge.Controllers
     },
                 AllowNewTimeProposals = true,
             };
+            Dictionary<string, string> eventDictionary = ConvertToDictionary(bodyEvent);
+            var requestBody = new FormUrlEncodedContent(eventDictionary);
 
-            var token = await _requestToken.Get();
-            var jsonContent = JsonSerializer.Serialize(request);
-            var requestBody = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            var graphResult = await _ipostCreateEvent.Request("graph", requestBody, new AuthenticationHeaderValue("Bearer", token));
+            var graphResult = await _ipost.Request("graph", requestBody, new AuthenticationHeaderValue("Bearer", JsonContent.access_token));
 
             return Ok();
         }
-        
 
+        private static Dictionary<string, string> ConvertToDictionary(object obj)
+        {
+            if (obj is null)
+                throw new ArgumentNullException(nameof(obj));
+
+            return obj.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                .ToDictionary(prop => prop.Name, prop => prop.GetValue(obj).ToString());
+        }
     }
 }

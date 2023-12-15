@@ -1,29 +1,29 @@
-﻿using Challenge.bootstrapper.layer.api.Helpers;
-using Challenge.bootstrapper.layer.api.Infrastructure.HttpRequest.Get;
-using Challenge.bootstrapper.layer.api.Infrastructure.HttpRequest.Post;
-using Challenge.bootstrapper.layer.api.Models.Options;
-using Challenge.bootstrapper.layer.api.Models.Response;
-using Microsoft.Extensions.Options;
-using System.Reflection;
+﻿using challenge.infrastructure.layer.api.HttpRequest;
+using challenge.domain.layer.api.Models.Response;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using challenge.domain.layer.api.Models.Options;
+using Microsoft.Extensions.Options;
 using System.Text.Json;
+using Challenge.infrastructure.layer.api.Helpers;
 
-namespace Challenge.bootstrapper.layer.api.Application
+namespace challenge.infrastructure.layer.api.ExternalApis.MicrosoftGraphApi
 {
-    public class RequestToken : IRequestToken
+    public class MicrosoftGraphApiService
     {
-        private readonly IHttpPost<TokenResponse> _post;
-        private readonly IHttpGet<dynamic> _get;
+        private readonly IHttpService<TokenResponse> _httpService;
         private readonly Token _tokenBody;
 
-        public RequestToken(IHttpPost<TokenResponse> post, IHttpGet<dynamic> get, IOptions<Token> tokenBody)
+        public MicrosoftGraphApiService(IHttpService<TokenResponse> httpService, IOptions<Token> tokenBody)
         {
-            _post = post;
-            _get = get;
+            _httpService = httpService;
             _tokenBody = tokenBody.Value;
         }
 
-        public async Task<string> Get()
+        public async Task<string> RequestAccessToken()
         {
             if (CustomValidations.AnyPropertyNullOrEmpty(_tokenBody))
                 throw new Exception("Faltan parametros necesarios para solicitar el token.");
@@ -36,13 +36,12 @@ namespace Challenge.bootstrapper.layer.api.Application
 
             var body = new FormUrlEncodedContent(dictionary);
 
-            var JsonContent = await _post.Request("token", body);
+            var JsonContent = await _httpService.Post("token", body);
 
             if (JsonContent.access_token is null)
                 throw new Exception("código inválido");
 
             return JsonContent.access_token;
-
-        } 
-    . }
+        }
+    }
 }

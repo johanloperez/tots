@@ -13,11 +13,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Domain\Models\Response\" />
     <Folder Include="Infrastructure\ExternalApis\GraphApi\" />
     <Folder Include="Infrastructure\HttpRequest\Delete\" />
     <Folder Include="Infrastructure\HttpRequest\Put\" />
     <Folder Include="Infrastructure\Persistence\Repositories\" />
     <Folder Include="Infrastructure\Token\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Challenge.Presentation.layer.api\challenge.Presentation.layer.api.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Challenge.bootstrapper.layer.api", "Challenge\Challenge.bootstrapper.layer.api.csproj", "{C785A950-6B25-443B-87BA-CB30B08B185A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "challenge.bootstrapper.layer.api", "Challenge\challenge.bootstrapper.layer.api.csproj", "{C785A950-6B25-443B-87BA-CB30B08B185A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "challenge.Presentation.layer.api", "Challenge.Presentation.layer.api\challenge.Presentation.layer.api.csproj", "{4BF8523A-0027-4313-86DA-B8BDB6329146}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "challenge.application.layer.api", "Challenge.application.layer.api\challenge.application.layer.api.csproj", "{F794D585-D900-4839-9D39-BA6B6D04126B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "challenge.domain.layer.api", "Challenger.domain.layer.api\challenge.domain.layer.api.csproj", "{8CBFC1A6-DCD2-4006-87C0-09E08ABF8C54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "challenge.infrastructure.layer.api", "challenge.infrastructure.layer.api\challenge.infrastructure.layer.api.csproj", "{67280B83-356D-4EE7-9B22-30D46A5C64D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{C785A950-6B25-443B-87BA-CB30B08B185A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C785A950-6B25-443B-87BA-CB30B08B185A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C785A950-6B25-443B-87BA-CB30B08B185A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BF8523A-0027-4313-86DA-B8BDB6329146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BF8523A-0027-4313-86DA-B8BDB6329146}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BF8523A-0027-4313-86DA-B8BDB6329146}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BF8523A-0027-4313-86DA-B8BDB6329146}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F794D585-D900-4839-9D39-BA6B6D04126B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F794D585-D900-4839-9D39-BA6B6D04126B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F794D585-D900-4839-9D39-BA6B6D04126B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F794D585-D900-4839-9D39-BA6B6D04126B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CBFC1A6-DCD2-4006-87C0-09E08ABF8C54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CBFC1A6-DCD2-4006-87C0-09E08ABF8C54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CBFC1A6-DCD2-4006-87C0-09E08ABF8C54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CBFC1A6-DCD2-4006-87C0-09E08ABF8C54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67280B83-356D-4EE7-9B22-30D46A5C64D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67280B83-356D-4EE7-9B22-30D46A5C64D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67280B83-356D-4EE7-9B22-30D46A5C64D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67280B83-356D-4EE7-9B22-30D46A5C64D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
