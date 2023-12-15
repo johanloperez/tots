@@ -1,4 +1,4 @@
-﻿namespace cChallenge.domain.layer.api.Dtos
+﻿namespace challenge.domain.layer.api.Dtos
 {
     public class UserDto
     {

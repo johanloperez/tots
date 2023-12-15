@@ -1,8 +1,9 @@
-using Challenge.bootstrapper.layer.api.Application;
-using Challenge.bootstrapper.layer.api.Infrastructure;
-using Challenge.bootstrapper.layer.api.Infrastructure.HttpRequest.Get;
-using Challenge.bootstrapper.layer.api.Infrastructure.HttpRequest.Post;
-using Challenge.bootstrapper.layer.api.Models.Options;
+using challenge.domain.layer.api.Contracts;
+using challenge.domain.layer.api.Models.Options;
+using challenge.infrastructure.layer.api.ExternalApis.MicrosoftGraphApi;
+using challenge.infrastructure.layer.api.HttpRequest;
+using challenge.infrastructure.layer.api;
+using challenge.bootstrapper.layer.api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -78,9 +79,7 @@ builder.Services.AddHttpClient("deleteEvents", options =>
 
 });
 
-builder.Services.AddScoped(typeof(IHttpPost<>), typeof(HttpPost<>));
-builder.Services.AddScoped(typeof(IHttpGet<>), typeof(HttpGet<>));
-builder.Services.AddScoped<IRequestToken, RequestToken>();
+
 builder.Services.AddControllers();
 
 builder.Services.AddRepositories();
@@ -101,7 +100,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.MapControllers();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

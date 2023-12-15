@@ -1,4 +1,6 @@
-﻿namespace challenge.bootstrapper.layer.api.Presentation.Helpers
+﻿using System.Reflection;
+
+namespace challenge.infrastructure.layer.api.Helpers
 {
     public static class Convert
     {

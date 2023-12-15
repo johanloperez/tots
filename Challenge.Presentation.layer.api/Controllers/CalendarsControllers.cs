@@ -1,13 +1,23 @@
-﻿using Challenge.bootstrapper.layer.api.Infrastructure.HttpRequest.Get;
+﻿
+using challenge.domain.layer.api.Contracts;
+using challenge.domain.layer.api.Domain.Dtos;
+using challenge.infrastructure.layer.api.HttpRequest;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Challenge.bootstrapper.layer.api.Controllers
+namespace challenge.presentation.layer.api.Controllers
 {
     public class CalendarsControllers : BaseController
     {
-        private readonly IHttpGet<dynamic> _iHttpGet;
-        public CalendarsControllers(IHttpGet<dynamic> iHttpGet)
+        private readonly IHttpService<dynamic> _iHttpGet;
+        public CalendarsControllers(IHttpService<dynamic> iHttpGet)
         {
             _iHttpGet = iHttpGet;
+        }
+
+        [HttpGet("GetCalendars")]
+        public async Task<ActionResult<CalendarsDto>> GetCalendars()
+        {
+            return Ok();
         }
     }
 }

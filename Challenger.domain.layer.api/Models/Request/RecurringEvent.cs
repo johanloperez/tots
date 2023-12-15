@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace challenge.domain.layer.api.Models
+namespace challenge.domain.layer.api.Models.Request
 {
     public class RecurringEvent
     {

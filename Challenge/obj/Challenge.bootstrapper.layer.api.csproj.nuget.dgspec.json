@@ -32,6 +32,9 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+              "C:\\Users\\Trabajo\\source\\repos\\tots\\challenge.infrastructure.layer.api\\challenge.infrastructure.layer.api.csproj": {
+                "projectPath": "C:\\Users\\Trabajo\\source\\repos\\tots\\challenge.infrastructure.layer.api\\challenge.infrastructure.layer.api.csproj"
+              },
               "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenger.domain.layer.api\\challenge.domain.layer.api.csproj": {
                 "projectPath": "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenger.domain.layer.api\\challenge.domain.layer.api.csproj"
               }
@@ -72,12 +75,80 @@
         }
       }
     },
-    "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenge.Presentation.layer.api\\challenge.Presentation.layer.api.csproj": {
+    "C:\\Users\\Trabajo\\source\\repos\\tots\\challenge.infrastructure.layer.api\\challenge.infrastructure.layer.api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenge.Presentation.layer.api\\challenge.Presentation.layer.api.csproj",
-        "projectName": "challenge.Presentation.layer.api",
-        "projectPath": "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenge.Presentation.layer.api\\challenge.Presentation.layer.api.csproj",
+        "projectUniqueName": "C:\\Users\\Trabajo\\source\\repos\\tots\\challenge.infrastructure.layer.api\\challenge.infrastructure.layer.api.csproj",
+        "projectName": "challenge.infrastructure.layer.api",
+        "projectPath": "C:\\Users\\Trabajo\\source\\repos\\tots\\challenge.infrastructure.layer.api\\challenge.infrastructure.layer.api.csproj",
+        "packagesPath": "C:\\Users\\Trabajo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Trabajo\\source\\repos\\tots\\challenge.infrastructure.layer.api\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Trabajo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenger.domain.layer.api\\challenge.domain.layer.api.csproj": {
+                "projectPath": "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenger.domain.layer.api\\challenge.domain.layer.api.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenge.Presentation.layer.api\\challenge.presentation.layer.api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenge.Presentation.layer.api\\challenge.presentation.layer.api.csproj",
+        "projectName": "challenge.presentation.layer.api",
+        "projectPath": "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenge.Presentation.layer.api\\challenge.presentation.layer.api.csproj",
         "packagesPath": "C:\\Users\\Trabajo\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenge.Presentation.layer.api\\obj\\",
         "projectStyle": "PackageReference",
@@ -226,8 +297,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenge.Presentation.layer.api\\challenge.Presentation.layer.api.csproj": {
-                "projectPath": "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenge.Presentation.layer.api\\challenge.Presentation.layer.api.csproj"
+              "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenge.Presentation.layer.api\\challenge.presentation.layer.api.csproj": {
+                "projectPath": "C:\\Users\\Trabajo\\source\\repos\\tots\\Challenge.Presentation.layer.api\\challenge.presentation.layer.api.csproj"
               }
             }
           }

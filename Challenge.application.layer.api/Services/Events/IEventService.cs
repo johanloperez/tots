@@ -1,4 +1,4 @@
-﻿namespace Challenge.bootstrapper.layer.api.Application.Services.Events
+﻿namespace challenge.application.layer.api.Services.Events
 {
     public interface IEventService
     {

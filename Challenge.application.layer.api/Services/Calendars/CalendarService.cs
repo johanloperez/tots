@@ -1,4 +1,4 @@
-﻿namespace Challenge.bootstrapper.layer.api.Application.Services.Calendars
+﻿namespace challenge.application.layer.api.Services.Calendars
 {
     public class CalendarService
     {

@@ -1,4 +1,4 @@
-﻿namespace Challenge.bootstrapper.layer.api.Domain.Entities
+﻿namespace challenge.domain.layer.api.Entities
 {
     public class Calendar
     {

@@ -1,4 +1,4 @@
-﻿namespace Challenge.bootstrapper.layer.api.Application.UseCases.Events
+﻿namespace challenge.application.layer.api.UseCases.Events
 {
     public interface IGetEvents
     {

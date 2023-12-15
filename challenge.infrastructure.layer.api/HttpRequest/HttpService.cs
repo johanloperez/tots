@@ -91,5 +91,44 @@ namespace challenge.infrastructure.layer.api.HttpRequest
                 throw new Exception("El uri: '" + httpClient.BaseAddress + "' respondió: " + response.ReasonPhrase);
             }
         }
+
+        public async Task<IEnumerable<T>> GetList(string client, AuthenticationHeaderValue? Auth = null, int? Timeout = null, Dictionary<string, string>? Headers = null)
+        {
+            var httpClient = _httpClientFactory.CreateClient(client);
+            httpClient.Timeout = TimeSpan.FromSeconds(Timeout ?? DefaultTimeout);
+            httpClient.DefaultRequestHeaders.Accept.Clear();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
+
+            if (Auth is not null)
+            {
+                httpClient.DefaultRequestHeaders.Authorization = Auth;
+            }
+
+            if (Headers != null && Headers.Count > 0)
+            {
+                foreach (KeyValuePair<string, string> Header in Headers)
+                {
+                    httpClient.DefaultRequestHeaders.Add(Header.Key, Header.Value);
+                }
+            }
+
+            var response = await httpClient.GetAsync(string.Empty);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responseString = await response.Content.ReadAsStringAsync();
+                var JsonContent = JsonSerializer.Deserialize<T>(responseString);
+
+                List<T> result = new List<T>();
+                if (JsonContent is null)
+                    throw new Exception("Error al serializar respuesta");
+
+                return result;
+            }
+            else
+            {
+                throw new Exception("El uri: '" + httpClient.BaseAddress + "' respondió: " + response.ReasonPhrase);
+            }
+        }
     }
 }

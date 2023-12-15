@@ -1,30 +1,22 @@
-﻿using Challenge.bootstrapper.layer.api.Application;
-using Challenge.bootstrapper.layer.api.Dtos;
-using Challenge.bootstrapper.layer.api.Infrastructure.HttpRequest.Get;
-using Challenge.bootstrapper.layer.api.Infrastructure.HttpRequest.Post;
+﻿using challenge.application.layer.api.Services.Users;
+using challenge.domain.layer.api.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Challenge.bootstrapper.layer.api.Controllers
+namespace challenge.presentation.layer.api.Controllers
 {
     public class UsersController : BaseController
     {
-        private readonly IHttpPost<dynamic> _post;
-        private readonly IHttpGet<dynamic> _get;
-        private readonly IRequestToken _requestToken;
-       
-        public UsersController(IHttpPost<dynamic> post, IHttpGet<dynamic> get, IRequestToken requestToken)
+        private readonly IUserService _userService;
+
+        public UsersController(IUserService  userService)
         {
-            _post = post;
-            _get = get;
-            _requestToken = requestToken;
+            _userService = userService;
         }
 
         [HttpGet("GetUsers")]
         public async Task<ActionResult<UserDto>> GetUsers()
         {
-            var token = await _requestToken.Get();
-
-            return Ok();
+            return Ok(await _userService.GetUsers());
         }
     }
 }

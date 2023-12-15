@@ -1,16 +1,25 @@
-﻿namespace challenge.domain.layer.api.Models.Response
+﻿using System.Text.Json.Serialization;
+
+namespace challenge.domain.layer.api.Models.Response
 {
     public class TokenResponse
     {
-        public string token_type { get; set; }
-        public long expires_in { get; set; }
-        public long ext_expires_in { get; set; }
-        public string access_token { get; set; }
+        [JsonPropertyName("token_type")]
+        public string TokenType { get; set; }
+
+        [JsonPropertyName("expires_in")]
+        public long ExpiresIn { get; set; }
+
+        [JsonPropertyName("ext_expires_in")]
+        public long ExtExpiresIn { get; set; }
+
+        [JsonPropertyName("access_token")]
+        public string AccessToken { get; set; }
 
         public TokenResponse()
         {
-            token_type =
-            access_token = string.Empty;
+            TokenType =
+            AccessToken = string.Empty;
         }
 
     }

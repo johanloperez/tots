@@ -1,4 +1,4 @@
-﻿namespace Challenge.bootstrapper.layer.api.Presentation.CustomExceptions
+﻿namespace Challenge.presentation.layer.api.CustomExceptions
 {
     using System;
 

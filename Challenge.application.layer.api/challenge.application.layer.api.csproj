@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\challenge.infrastructure.layer.api\challenge.infrastructure.layer.api.csproj" />
     <ProjectReference Include="..\Challenger.domain.layer.api\challenge.domain.layer.api.csproj" />
   </ItemGroup>
 
