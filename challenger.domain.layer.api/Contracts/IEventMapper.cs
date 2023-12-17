@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace challenge.domain.layer.Contracts
 {
-    public interface IUserMapper
+    public interface IEventMapper
     {
-        UserDto MapToDto(User user);
+        EventDto MapToDto(Event events);
     }
 }

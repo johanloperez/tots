@@ -1,6 +1,6 @@
-﻿using challenge.domain.layer.api.Dtos;
+﻿using challenge.domain.layer.Dtos;
 
-namespace challenge.application.layer.api.Services.Users
+namespace challenge.application.layer.Services.Users
 {
     public interface IUserService
     {

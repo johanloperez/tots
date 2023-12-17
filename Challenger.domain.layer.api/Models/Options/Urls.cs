@@ -1,4 +1,4 @@
-﻿namespace challenge.domain.layer.api.Models.Options
+﻿namespace challenge.domain.layer.Models.Options
 {
     public class Urls
     {
@@ -6,7 +6,6 @@
         public string DeleteEvents { get; set; }
         public string EditEvents { get; set; }
         public string GetEvents { get; set; }
-        public string GetCalendars { get; set; }
         public string GetToken { get; set; }
         public string GetCode { get; set; }
         public string GetUsers { get; set; }
@@ -17,7 +16,6 @@
             DeleteEvents =
             EditEvents =
             GetEvents =
-            GetCalendars =
             GetToken =
             GetCode =
             GetUsers = string.Empty;

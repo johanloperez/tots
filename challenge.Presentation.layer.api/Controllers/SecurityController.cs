@@ -1,5 +1,5 @@
 ﻿using challenge.application.layer.Services.Security;
-using challenge.presentation.layer.api.Controllers;
+using challenge.presentation.layer.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

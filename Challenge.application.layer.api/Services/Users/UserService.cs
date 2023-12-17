@@ -1,8 +1,8 @@
-﻿using challenge.application.layer.api.Services.Users;
-using challenge.domain.layer.api.Contracts;
-using challenge.domain.layer.api.Dtos;
+﻿using challenge.application.layer.Services.Users;
+using challenge.domain.layer.Contracts;
+using challenge.domain.layer.Dtos;
 
-namespace challenge.application.layer.api.Services.users
+namespace challenge.application.layer.Services.users
 {
     public class UserService : IUserService
     {

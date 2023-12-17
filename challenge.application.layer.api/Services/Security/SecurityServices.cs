@@ -1,4 +1,4 @@
-﻿using challenge.domain.layer.api.Contracts;
+﻿using challenge.domain.layer.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

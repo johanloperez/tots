@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace challenge.infrastructure.layer.api.Helpers
+namespace challenge.infrastructure.layer.Helpers
 {
     public static class Convert
     {

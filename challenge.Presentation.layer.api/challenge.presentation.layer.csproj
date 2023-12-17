@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="CustomExceptions\" />
     <Folder Include="Helpers\" />
     <Folder Include="Middleware\" />
   </ItemGroup>

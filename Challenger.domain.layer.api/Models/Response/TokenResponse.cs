@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace challenge.domain.layer.api.Models.Response
+namespace challenge.domain.layer.Models.Response
 {
-    public class TokenResponse
+    public class GetTokenResponse
     {
         [JsonPropertyName("token_type")]
         public string TokenType { get; set; }
@@ -16,7 +16,7 @@ namespace challenge.domain.layer.api.Models.Response
         [JsonPropertyName("access_token")]
         public string AccessToken { get; set; }
 
-        public TokenResponse()
+        public GetTokenResponse()
         {
             TokenType =
             AccessToken = string.Empty;

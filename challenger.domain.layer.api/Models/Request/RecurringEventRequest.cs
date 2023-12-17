@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace challenge.domain.layer.api.Models.Request
+namespace challenge.domain.layer.Models.Request
 {
-    public class RecurringEvent
+    public class RecurringEventRequest
     {
         public string Subject { get; set; }
         public ItemBody Body { get; set; }

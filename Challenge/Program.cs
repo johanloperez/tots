@@ -1,7 +1,7 @@
-using challenge.domain.layer.api.Models.Options;
 using challenge.domain.layer.Models.Options;
-using challenge.infrastructure.layer.api;
-using challenge.presentation.layer.api;
+using challenge.domain.layer.Models.Options;
+using challenge.infrastructure.layer;
+using challenge.presentation.layer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -46,14 +46,6 @@ builder.Services.AddHttpClient("users", options =>
 
 });
 
-builder.Services.AddHttpClient("calendars", options =>
-{
-    options.BaseAddress = new Uri(sectionUrls.GetCalendars);
-}).ConfigurePrimaryHttpMessageHandler(_ => new HttpClientHandler
-{
-    ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; }
-
-});
 
 builder.Services.AddHttpClient("events", options =>
 {
@@ -98,7 +90,7 @@ builder.Services.AddHttpClient("deleteEvents", options =>
 
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuerSigningKey = true,
+        ValidateIssuerSigningKey = false,
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidAudience = "https://graph.microsoft.com",

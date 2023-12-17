@@ -1,6 +1,5 @@
-﻿using challenge.domain.layer.api.Models.Options;
-using challenge.domain.layer.Models.Options;
-using challenge.presentation.layer.api.Controllers;
+﻿using challenge.domain.layer.Models.Options;
+using challenge.presentation.layer.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System;
@@ -14,23 +13,22 @@ using System.Web;
 
 namespace challenge.presentation.layer.Controllers
 {
-    public class TestController : BaseController
+    public class LoginController
     {
         private readonly GetTokenDelegate _tokenDelegateBody;
         private readonly Urls _urls;
 
-        public TestController(IOptions<Urls> urls, IOptions<GetTokenDelegate> tokenDelegateBody)
+        public LoginController(IOptions<Urls> urls, IOptions<GetTokenDelegate> tokenDelegateBody)
         {
             _tokenDelegateBody = tokenDelegateBody.Value;
             _urls = urls.Value;
         }
 
         [HttpGet("GetLink")]
-        public IActionResult GetLink()
+        public ActionResult<string> GetLink()
         {
             var uri = $"{_urls.GetCode}{ToQueryString(_tokenDelegateBody)}";
-
-            return Ok(uri);
+            return uri;
         }
 
         private static string ToQueryString(object obj)

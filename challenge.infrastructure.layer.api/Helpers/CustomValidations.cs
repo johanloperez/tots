@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Challenge.infrastructure.layer.api.Helpers
+namespace Challenge.infrastructure.layer.Helpers
 {
     public static class CustomValidations
     {

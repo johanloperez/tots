@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("challenge.bootstrapper.layer")]
-namespace challenge.presentation.layer.api
+namespace challenge.presentation.layer
 {
     internal static class DomainModule
     {

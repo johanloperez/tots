@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace challenge.domain.layer.api.Entities
+namespace challenge.domain.layer.Entities
 {
     public class User
     {

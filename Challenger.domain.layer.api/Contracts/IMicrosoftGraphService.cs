@@ -1,22 +1,22 @@
-﻿using challenge.domain.layer.api.Domain.Dtos;
-using challenge.domain.layer.api.Dtos;
-using challenge.domain.layer.api.Models.Request;
+﻿using challenge.domain.layer.Dtos;
+using challenge.domain.layer.Dtos;
+using challenge.domain.layer.Models.Request;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace challenge.domain.layer.api.Contracts
+namespace challenge.domain.layer.Contracts
 {
     public interface IMicrosoftGraphApiService
     {
         Task<IEnumerable<UserDto>> GetAllUsers();
-        Task<CalendarsDto> GetCalendarByUser(string user);
         Task<string> RequestAccessToken(string code);
-        Task<IEnumerable<EventDto>> GetAllEventsByCalendar(string calendarId);
-        Task<IEnumerable<dynamic>> CreaetEvent(string userId, string calendarId, RecurringEvent body);
-        Task<IEnumerable<dynamic>> DeleteEvent(string eventId);
+        Task<string> RequestAccessToken();
+        Task<IEnumerable<EventDto>> GetAllEvents(string user);
+        Task<EventDto> CreateEvent(string userId, EventRequest request);
+        Task<string> DeleteEventById(string userId, string eventId);
         Task<IEnumerable<dynamic>> EditEvent(string eventId);
     }
 }

@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 
 namespace challenge.infrastructure.layer.AutoMapper
 {
-    public class UserMapper : IUserMapper
+    public class EventMapper : IEventMapper
     {
         private readonly IMapper _mapper;
 
-        public UserMapper(IMapper mapper)
+        public EventMapper(IMapper mapper)
         {
             _mapper = mapper;
         }
 
-        public UserDto MapToDto(User user)
+        public EventDto MapToDto(Event events)
         {
-            return _mapper.Map<UserDto>(user);
+            return _mapper.Map<EventDto>(events);
         }
 
     }

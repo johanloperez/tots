@@ -1,17 +1,17 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace challenge.domain.layer.api.Models.Options
+namespace challenge.domain.layer.Models.Options
 {
     public class Token
     {
-        [JsonPropertyName("redirect_uri")]
-        public string RedirectUri { get; set; }
+        //[JsonPropertyName("redirect_uri")]
+        //public string RedirectUri { get; set; }
 
         [JsonPropertyName("client_id")]
         public string ClientId { get; set; }
 
-        [JsonPropertyName("code")]
-        public string Code { get; set; }
+        //[JsonPropertyName("code")]
+        //public string Code { get; set; }
 
         [JsonPropertyName("client_secret")]
         public string ClientSecret { get; set; }
@@ -27,9 +27,9 @@ namespace challenge.domain.layer.api.Models.Options
             GrantType =
             ClientId =
             ClientSecret =
-            RedirectUri =
-            Scope =
-            Code = string.Empty;
+            //RedirectUri =
+            Scope = string.Empty;
+            //Code = string.Empty;
         }
     }
 }

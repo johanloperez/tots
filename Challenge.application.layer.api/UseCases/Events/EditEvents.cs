@@ -1,6 +1,6 @@
-﻿namespace challenge.application.layer.api.UseCases.Events
+﻿namespace challenge.application.layer.UseCases.Events
 {
-    public class EditEvents
+    public class EditEvents : IEditEvents
     {
     }
 }

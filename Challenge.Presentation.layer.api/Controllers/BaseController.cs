@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace challenge.presentation.layer.api.Controllers
+namespace challenge.presentation.layer.Controllers
 {
     [ApiController]
     [Route(BasePath + "/[controller]")]
