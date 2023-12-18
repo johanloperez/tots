@@ -4,14 +4,9 @@ namespace challenge.domain.layer.Models.Options
 {
     public class Token
     {
-        //[JsonPropertyName("redirect_uri")]
-        //public string RedirectUri { get; set; }
 
         [JsonPropertyName("client_id")]
         public string ClientId { get; set; }
-
-        //[JsonPropertyName("code")]
-        //public string Code { get; set; }
 
         [JsonPropertyName("client_secret")]
         public string ClientSecret { get; set; }

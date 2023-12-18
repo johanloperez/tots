@@ -1,6 +1,7 @@
 using challenge.domain.layer.Models.Options;
 using challenge.domain.layer.Models.Options;
 using challenge.infrastructure.layer;
+using challenge.infrastructure.layer.Middleware;
 using challenge.presentation.layer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -134,11 +135,11 @@ builder.Services.AddSwaggerGen(c =>
         });
 });
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
 
 var app = builder.Build();
+app.UseMiddleware<ErrorMiddleware>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

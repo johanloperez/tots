@@ -1,5 +1,4 @@
 ﻿using challenge.domain.layer.Dtos;
-using challenge.domain.layer.Dtos;
 using challenge.domain.layer.Models.Request;
 using challenge.domain.layer.Models.Response;
 using System;

@@ -11,7 +11,6 @@ using System.Text.Json;
 using Challenge.infrastructure.layer.Helpers;
 using challenge.domain.layer.Models.Request;
 using challenge.domain.layer.Dtos;
-using challenge.domain.layer.Dtos;
 using challenge.domain.layer.Entities;
 using challenge.domain.layer;
 using System.Net.Http.Headers;
@@ -66,7 +65,7 @@ namespace challenge.infrastructure.layer.ExternalApis.MicrosoftGraphApi
         public async Task<EventDto> CreateEvent(string userId, CreateEventRequest request)
         {
             var token = RequestAccessToken();
-            var uri = _urls.GetEvents.Replace("{userId}", userId);
+            var uri = _urls.CreateEvents.Replace("{userId}", userId);
 
             var json = JsonSerializer.Serialize(request);
 
@@ -158,7 +157,6 @@ namespace challenge.infrastructure.layer.ExternalApis.MicrosoftGraphApi
 
         public Task<string> RequestAccessToken(string code)
         {
-            //_tokenBody.Code = code; 
             throw new NotImplementedException();
         }
     }

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using challenge.domain.layer.Models;
+using Challenge.infrastructure.layer.CustomExceptions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -24,10 +26,16 @@ namespace challenge.infrastructure.layer.Middleware
             {
                 await _next(context);
             }
+            catch (CustomException CustomEx)
+            {
+                await handleError(context, CustomEx);
+
+            }
             catch (Exception ex)
             {
                 await handleError(context, ex);
             }
+
         }
 
         #region private
@@ -50,17 +58,5 @@ namespace challenge.infrastructure.layer.Middleware
             await context.Response.WriteAsync(response);
         }
         #endregion
-    }
-
-     #nullable enable
-    public class ErrorResult
-    {
-        public bool ErrorMostrable { get; set; }
-        public string MensajeError { get; set; }
-
-        public ErrorResult()
-        {
-            MensajeError = string.Empty;
-        }
     }
 }
