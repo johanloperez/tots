@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace challenge.domain.layer.Models.Request
 {
-    public class EventRequest
+    public class CreateEventRequest
     {
         [JsonPropertyName("subject")]
         public string Subject { get; set; }
@@ -30,7 +30,7 @@ namespace challenge.domain.layer.Models.Request
         [JsonPropertyName("transactionId")]
         public string TransactionId { get; set; }
 
-        public EventRequest()
+        public CreateEventRequest()
         {
             Body = new MeetingBody();
             Start = new MeetingDateTime();

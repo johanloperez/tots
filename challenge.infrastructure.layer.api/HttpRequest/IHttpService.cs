@@ -12,6 +12,6 @@ namespace challenge.infrastructure.layer.HttpRequest
         Task<T> Post(string client, HttpContent body, AuthenticationHeaderValue ? Auth = null, string? uri = null, int? Timeout = null, Dictionary<string, string>? Headers = null);
         Task<T> Get(string client, AuthenticationHeaderValue? Auth = null, string? uri = null, int? Timeout = null, Dictionary<string, string>? Headers = null);
         Task<bool> Delete(string client, AuthenticationHeaderValue? Auth = null, string? uri = null, int? Timeout = null, Dictionary<string, string>? Headers = null);
-        Task<T> Put(string client, AuthenticationHeaderValue? Auth = null, string? uri = null, int? Timeout = null, Dictionary<string, string>? Headers = null);
+        Task<T> Patch(string client, HttpContent body, AuthenticationHeaderValue? Auth = null, string? uri = null, int? Timeout = null, Dictionary<string, string>? Headers = null);
     }
 }

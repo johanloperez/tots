@@ -60,7 +60,7 @@ namespace challenge.infrastructure.layer.ExternalApis.MicrosoftGraphApi
             _httpServiceCreateEvent = httpServiceCreateEvent;
         }
 
-        public async Task<EventDto> CreateEvent(string userId, EventRequest request)
+        public async Task<EventDto> CreateEvent(string userId, CreateEventRequest request)
         {
             var token = RequestAccessToken();
             var uri = _urls.GetEvents.Replace("{userId}", userId);
@@ -84,9 +84,21 @@ namespace challenge.infrastructure.layer.ExternalApis.MicrosoftGraphApi
             return delete ? "Ok":"Failed";
         }
 
-        public async Task<IEnumerable<dynamic>> EditEvent(string eventId)
+        public async Task<string> EditEvent(string userId, EditEventRequest request)
         {
             throw new NotImplementedException();
+
+            //var token = RequestAccessToken();
+            //var uri = _urls.GetEvents.Replace("{userId}", userId);
+
+            //var json = JsonSerializer.Serialize(request);
+
+            //var body = new StringContent(json, Encoding.UTF8, "application/json");
+
+            //var events = await _httpServiceCreateEvent.Post("events", body, new AuthenticationHeaderValue("Bearer", token.Result), uri);
+            //var result = _eventMapper.MapToDto(events);
+
+            //return result;
         }
 
         public async Task<IEnumerable<EventDto>> GetAllEvents(string user)
@@ -123,8 +135,6 @@ namespace challenge.infrastructure.layer.ExternalApis.MicrosoftGraphApi
 
         public async Task<string> RequestAccessToken()
         {
-            //_tokenBody.Code = code; 
-
             if (CustomValidations.AnyPropertyNullOrEmpty(_tokenBody))
                 throw new Exception("Faltan parametros necesarios para solicitar el token.");
 
@@ -146,6 +156,7 @@ namespace challenge.infrastructure.layer.ExternalApis.MicrosoftGraphApi
 
         public Task<string> RequestAccessToken(string code)
         {
+            //_tokenBody.Code = code; 
             throw new NotImplementedException();
         }
     }

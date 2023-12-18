@@ -129,9 +129,42 @@ namespace challenge.infrastructure.layer.HttpRequest
             }
         }
 
-        public Task<T> Put(string client, AuthenticationHeaderValue? Auth = null, string? uri = null, int? Timeout = null, Dictionary<string, string>? Headers = null)
+        public async Task<T> Patch(string client, HttpContent body, AuthenticationHeaderValue? Auth = null, string? uri = null, int? Timeout = null, Dictionary<string, string>? Headers = null)
         {
-            throw new NotImplementedException();
+            var httpClient = _httpClientFactory.CreateClient(client);
+            httpClient.Timeout = TimeSpan.FromSeconds(Timeout ?? DefaultTimeout);
+            httpClient.DefaultRequestHeaders.Accept.Clear();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
+
+            if (Auth is not null)
+            {
+                httpClient.DefaultRequestHeaders.Authorization = Auth;
+            }
+
+            if (Headers != null && Headers.Count > 0)
+            {
+                foreach (KeyValuePair<string, string> Header in Headers)
+                {
+                    httpClient.DefaultRequestHeaders.Add(Header.Key, Header.Value);
+                }
+            }
+            var response = await httpClient.PatchAsync(uri, body);
+
+            if (response is null)
+                throw new CustomException($"Error al intentar llamar al servidor: {httpClient.BaseAddress}");
+
+            var responseString = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+                throw new CustomException("El server respondió: " + responseString);
+
+
+            var JsonContent = JsonSerializer.Deserialize<T>(responseString);
+
+            if (JsonContent is null)
+                throw new Exception("Error al serializar respuesta");
+
+            return JsonContent;
         }
     }
 }

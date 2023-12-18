@@ -15,8 +15,8 @@ namespace challenge.domain.layer.Contracts
         Task<string> RequestAccessToken(string code);
         Task<string> RequestAccessToken();
         Task<IEnumerable<EventDto>> GetAllEvents(string user);
-        Task<EventDto> CreateEvent(string userId, EventRequest request);
+        Task<EventDto> CreateEvent(string userId, CreateEventRequest request);
         Task<string> DeleteEventById(string userId, string eventId);
-        Task<IEnumerable<dynamic>> EditEvent(string eventId);
+        Task<string> EditEvent(string userId, EditEventRequest request);
     }
 }

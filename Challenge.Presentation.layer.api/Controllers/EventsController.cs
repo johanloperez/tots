@@ -28,22 +28,29 @@ namespace challenge.presentation.layer.Controllers
             _editEvents = editEvents;
         }
 
-        [HttpPost("CreateEvents")]
-        public async Task<ActionResult<EventDto>> CreateEvents([FromQuery] string userId, [FromBody] EventRequest request)
+        [HttpPost("CreateEvents/user/{userId}")]
+        public async Task<ActionResult<EventDto>> CreateEvents([FromQuery] string userId, [FromBody] CreateEventRequest request)
         {
             var result = await _createEvents.Create(userId,request);
             return Ok(result);
         }
 
-        [HttpGet("GetListEvents")]
-        public async Task<ActionResult<IEnumerable<EventDto>>> GetListEvents([FromQuery] string userId)
+        [HttpGet("GetListEvents/user/{userId}")]
+        public async Task<ActionResult<IEnumerable<EventDto>>> GetListEvents(string userId)
         {
             var result = await _getEvents.GetAll(userId);
             return Ok(result);
         }
 
-        [HttpDelete("DeleteEvent")]
-        public async Task<ActionResult> DeleteEvent([FromQuery] string userId, [FromQuery] string eventId)
+        [HttpDelete("DeleteEvent/user/{userId}/event/{eventId}")]
+        public async Task<ActionResult> DeleteEvent(string userId, string eventId)
+        {
+            var result = await _deleteEvents.DeleteById(userId, eventId);
+            return Ok(result);
+        }
+
+        [HttpPatch("UpdateEvent/user/{userId}/event/{eventId}")]
+        public async Task<ActionResult> UpdateEvent(string userId, string eventId)
         {
             var result = await _deleteEvents.DeleteById(userId, eventId);
             return Ok(result);

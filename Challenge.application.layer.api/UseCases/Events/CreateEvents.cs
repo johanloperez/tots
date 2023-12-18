@@ -13,7 +13,7 @@ namespace challenge.application.layer.UseCases.Events
             _eventService = eventService;
         }
 
-        public async Task<EventDto> Create(string userId, EventRequest request)
+        public async Task<EventDto> Create(string userId, CreateEventRequest request)
         {
             return await _eventService.CreateEvent(userId, request);
         }

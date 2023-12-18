@@ -5,6 +5,6 @@ namespace challenge.application.layer.UseCases.Events
 {
     public interface ICreateEvents
     {
-        Task<EventDto> Create(string userId, EventRequest request);
+        Task<EventDto> Create(string userId, CreateEventRequest request);
     }
 }

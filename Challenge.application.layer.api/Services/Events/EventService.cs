@@ -13,10 +13,16 @@ namespace challenge.application.layer.Services.Events
             _mgApiService = mgApiService;
         }
 
-        public async Task<EventDto> CreateEvent(string userId, EventRequest request)
+        public async Task<EventDto> CreateEvent(string userId, CreateEventRequest request)
         {
             return await _mgApiService.CreateEvent(userId,request);
         }
+
+        public async Task<string> EditEvent(string userId, EditEventRequest request)
+        {
+            return await _mgApiService.EditEvent(userId, request);
+        }
+
         public async Task<IEnumerable<EventDto>> GetAll(string userId)
         {
             return await _mgApiService.GetAllEvents(userId);
