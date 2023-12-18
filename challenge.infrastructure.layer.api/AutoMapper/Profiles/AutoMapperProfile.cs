@@ -12,8 +12,7 @@ namespace challenge.infrastructure.layer.AutoMapper.Profiles
             CreateMap<Event, EventDto>();
             CreateMap<ResponseStatus, ResponseStatusDto>();
             CreateMap<Body, BodyDto>();
-            CreateMap<Start, StartDto>();
-            CreateMap<End, EndDto>();
+            CreateMap<MeetingDateTime, MeetingDateTimeDto>();
             CreateMap<Organizer, OrganizerDto>();
             CreateMap<EmailAddress, EmailAddressDto>();
         }

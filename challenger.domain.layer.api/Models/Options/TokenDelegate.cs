@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace challenge.domain.layer.Models.Options
 {
-    public class GetTokenDelegate
+    public class TokenDelegate
     {
         [JsonPropertyName("client_id")]
         public string ClientId { get; set; }
@@ -18,7 +18,7 @@ namespace challenge.domain.layer.Models.Options
         [JsonPropertyName("response_type")]
         public string ResponseType { get; set; }
 
-        public GetTokenDelegate()
+        public TokenDelegate()
         {
             ResponseType =
             ClientId =

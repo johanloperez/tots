@@ -158,7 +158,6 @@ namespace challenge.infrastructure.layer.HttpRequest
             if (!response.IsSuccessStatusCode)
                 throw new CustomException("El server respondió: " + responseString);
 
-
             var JsonContent = JsonSerializer.Deserialize<T>(responseString);
 
             if (JsonContent is null)

@@ -32,6 +32,7 @@ namespace challenge.infrastructure.layer.ExternalApis.MicrosoftGraphApi
         private readonly IHttpService<GetUsersResponse> _httpServiceGetUser;
         private readonly IHttpService<GetEventResponse> _httpServiceGetEvent;
         private readonly IHttpService<Event> _httpServiceCreateEvent;
+        private readonly IHttpService<dynamic> _httpServiceEditEvent;
         private readonly IUserMapper _userMapper;
         private readonly IEventMapper _eventMapper;
         private readonly Token _tokenBody;
@@ -43,11 +44,12 @@ namespace challenge.infrastructure.layer.ExternalApis.MicrosoftGraphApi
             IHttpService<GetEventResponse> httpServiceGetEvent,
             IHttpService<Event> httpServiceCreateEvent,
             IHttpService<dynamic> httpServiceDeleteEvent,
+            IHttpService<dynamic> httpServiceEditEvent,
             IOptions<Token> tokenBody, 
             IOptions<Urls> urls, 
             IUserMapper userMapper,
             IEventMapper eventMapper,
-            IOptions<GetTokenDelegate> tokenDelegateBody)
+            IOptions<TokenDelegate> tokenDelegateBody)
         {
             _httpServiceGetToken = httpServiceGetToken;
             _httpServiceGetUser = httpServiceGetUser;
@@ -58,6 +60,7 @@ namespace challenge.infrastructure.layer.ExternalApis.MicrosoftGraphApi
             _eventMapper = eventMapper;
             _httpServiceDeleteEvent = httpServiceDeleteEvent;
             _httpServiceCreateEvent = httpServiceCreateEvent;
+            _httpServiceEditEvent = httpServiceEditEvent;
         }
 
         public async Task<EventDto> CreateEvent(string userId, CreateEventRequest request)
@@ -84,21 +87,20 @@ namespace challenge.infrastructure.layer.ExternalApis.MicrosoftGraphApi
             return delete ? "Ok":"Failed";
         }
 
-        public async Task<string> EditEvent(string userId, EditEventRequest request)
+        public async Task<EditEventResponse> EditEvent(string userId, string evenId, EditEventRequest request)
         {
-            throw new NotImplementedException();
 
-            //var token = RequestAccessToken();
-            //var uri = _urls.GetEvents.Replace("{userId}", userId);
+            var token = RequestAccessToken();
+            var uri = _urls.EditEvents.Replace("{userId}", userId).Replace("{eventId}",evenId);
 
-            //var json = JsonSerializer.Serialize(request);
+            var json = JsonSerializer.Serialize(request);
 
-            //var body = new StringContent(json, Encoding.UTF8, "application/json");
+            var body = new StringContent(json, Encoding.UTF8, "application/json");
 
-            //var events = await _httpServiceCreateEvent.Post("events", body, new AuthenticationHeaderValue("Bearer", token.Result), uri);
-            //var result = _eventMapper.MapToDto(events);
+            var events = await _httpServiceEditEvent.Patch("editEvents", body, new AuthenticationHeaderValue("Bearer", token.Result), uri);
+            var result = _eventMapper.MapToDto(events);
 
-            //return result;
+            return result;
         }
 
         public async Task<IEnumerable<EventDto>> GetAllEvents(string user)

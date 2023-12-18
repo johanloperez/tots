@@ -50,9 +50,9 @@ namespace challenge.presentation.layer.Controllers
         }
 
         [HttpPatch("UpdateEvent/user/{userId}/event/{eventId}")]
-        public async Task<ActionResult> UpdateEvent(string userId, string eventId)
+        public async Task<ActionResult> UpdateEvent(string userId, string eventId, [FromBody] EditEventRequest request)
         {
-            var result = await _deleteEvents.DeleteById(userId, eventId);
+            var result = await _editEvents.Edit(userId, eventId, request);
             return Ok(result);
         }
     }

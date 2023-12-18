@@ -1,15 +1,15 @@
-﻿using challenge.domain.layer.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using challenge.domain.layer.Entities;
 
-namespace challenge.domain.layer.Models.Request
+namespace challenge.domain.layer.Models.Response
 {
-#nullable enable
-    public class EditEventRequest
+    public class EditEventResponse
     {
         [JsonPropertyName("originalStartTimeZone")]
         public string OriginalStartTimeZone { get; set; }
@@ -21,7 +21,7 @@ namespace challenge.domain.layer.Models.Request
         public ResponseStatus ResponseStatus { get; set; }
 
         [JsonPropertyName("recurrence")]
-        public object? Recurrence { get; set; }
+        public object Recurrence { get; set; }
 
         [JsonPropertyName("reminderMinutesBeforeStart")]
         public int ReminderMinutesBeforeStart { get; set; }
@@ -38,21 +38,40 @@ namespace challenge.domain.layer.Models.Request
         [JsonPropertyName("hideAttendees")]
         public bool HideAttendees { get; set; }
 
-        [JsonPropertyName("categories")]
-        public List<string> Categories { get; set; }
+        [JsonPropertyName("onlineMeeting")]
+        public OnlineMeeting OnlineMeeting { get; set; }
 
-        public EditEventRequest()
+        public EditEventResponse()
         {
-            Recurrence = new object();
             OriginalStartTimeZone = string.Empty;
             OriginalEndTimeZone = string.Empty;
             ResponseStatus = new ResponseStatus();
+            Recurrence = new object();
             ReminderMinutesBeforeStart = 0;
             IsOnlineMeeting = false;
             OnlineMeetingProvider = string.Empty;
             IsReminderOn = false;
             HideAttendees = false;
-            Categories = new List<string>();
+            OnlineMeeting = new OnlineMeeting();
+        }
+    }
+
+    public class OnlineMeeting
+    {
+        [JsonPropertyName("joinUrl")]
+        public string JoinUrl { get; set; }
+
+        [JsonPropertyName("conferenceId")]
+        public string ConferenceId { get; set; }
+
+        [JsonPropertyName("tollNumber")]
+        public string TollNumber { get; set; }
+
+        public OnlineMeeting()
+        {
+            JoinUrl = string.Empty;
+            ConferenceId = string.Empty;
+            TollNumber = string.Empty;
         }
     }
 }

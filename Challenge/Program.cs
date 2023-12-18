@@ -13,7 +13,7 @@ var tokenDelegate = builder.Configuration.GetSection("Delegate");
 var urls = builder.Configuration.GetSection("URL");
 
 builder.Services.Configure<Token>(token);
-builder.Services.Configure<GetTokenDelegate>(tokenDelegate);
+builder.Services.Configure<TokenDelegate>(tokenDelegate);
 builder.Services.Configure<Urls>(urls);
 
 var sectionUrls = urls.Get<Urls>();

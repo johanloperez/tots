@@ -1,6 +1,7 @@
 ﻿using challenge.domain.layer.Contracts;
 using challenge.domain.layer.Dtos;
 using challenge.domain.layer.Models.Request;
+using challenge.domain.layer.Models.Response;
 
 namespace challenge.application.layer.Services.Events
 {
@@ -18,9 +19,9 @@ namespace challenge.application.layer.Services.Events
             return await _mgApiService.CreateEvent(userId,request);
         }
 
-        public async Task<string> EditEvent(string userId, EditEventRequest request)
+        public async Task<EditEventResponse> EditEvent(string userId, string evenId, EditEventRequest request)
         {
-            return await _mgApiService.EditEvent(userId, request);
+            return await _mgApiService.EditEvent(userId, evenId, request);
         }
 
         public async Task<IEnumerable<EventDto>> GetAll(string userId)

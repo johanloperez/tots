@@ -107,10 +107,10 @@ namespace challenge.domain.layer.Entities
         public Body Body { get; set; }
 
         [JsonPropertyName("start")]
-        public Start Start { get; set; }
+        public MeetingDateTime Start { get; set; }
 
         [JsonPropertyName("end")]
-        public End End { get; set; }
+        public MeetingDateTime End { get; set; }
 
         [JsonPropertyName("location")]
         public Location Location { get; set; }
@@ -122,7 +122,7 @@ namespace challenge.domain.layer.Entities
         public object Recurrence { get; set; }
 
         [JsonPropertyName("attendees")]
-        public List<object> Attendees { get; set; }
+        public List<Attendee> Attendees { get; set; }
 
         [JsonPropertyName("organizer")]
         public Organizer Organizer { get; set; }
@@ -138,12 +138,14 @@ namespace challenge.domain.layer.Entities
 
         public Event()
         {
+            OnlineMeeting = new object();
+            Recurrence = new object();
             Body = new Body();
-            Start = new Start();
-            End = new End();
+            Start = new MeetingDateTime();
+            End = new MeetingDateTime();
             Location = new Location();
             Locations = new List<Location>();
-            Attendees = new List<object>();
+            Attendees = new List<Attendee>();
             Organizer = new Organizer();
             Categories = new List<string>();
             ResponseStatus = new ResponseStatus();
@@ -202,7 +204,7 @@ namespace challenge.domain.layer.Entities
         }
     }
 
-    public class Start
+    public class MeetingDateTime
     {
         [JsonPropertyName("dateTime")]
         public DateTime DateTime { get; set; }
@@ -210,24 +212,8 @@ namespace challenge.domain.layer.Entities
         [JsonPropertyName("timeZone")]
         public string TimeZone { get; set; }
 
-        public Start()
+        public MeetingDateTime()
         {
-            DateTime = DateTime.MinValue;
-            TimeZone = string.Empty;
-        }
-    }
-
-    public class End
-    {
-        [JsonPropertyName("dateTime")]
-        public DateTime DateTime { get; set; }
-
-        [JsonPropertyName("timeZone")]
-        public string TimeZone { get; set; }
-
-        public End()
-        {
-            DateTime = DateTime.MinValue;
             TimeZone = string.Empty;
         }
     }
@@ -282,6 +268,21 @@ namespace challenge.domain.layer.Entities
         {
             Name = string.Empty;
             Address = string.Empty;
+        }
+    }
+
+    public class Attendee
+    {
+        [JsonPropertyName("emailAddress")]
+        public EmailAddress EmailAddress { get; set; }
+
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+
+        public Attendee()
+        {
+            EmailAddress = new EmailAddress();
+            Type = string.Empty;
         }
     }
 }

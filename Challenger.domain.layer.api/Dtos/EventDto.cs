@@ -14,10 +14,10 @@ namespace challenge.domain.layer.Dtos
         public BodyDto Body { get; set; }
 
         [JsonPropertyName("start")]
-        public StartDto Start { get; set; }
+        public MeetingDateTimeDto Start { get; set; }
 
         [JsonPropertyName("end")]
-        public EndDto End { get; set; }
+        public MeetingDateTimeDto End { get; set; }
 
         [JsonPropertyName("responseStatus")]
         public ResponseStatusDto ResponseStatus { get; set; }
@@ -58,7 +58,7 @@ namespace challenge.domain.layer.Dtos
         }
     }
 
-    public class StartDto
+    public class MeetingDateTimeDto
     {
         [JsonPropertyName("dateTime")]
         public DateTime DateTime { get; set; }
@@ -66,22 +66,7 @@ namespace challenge.domain.layer.Dtos
         [JsonPropertyName("timeZone")]
         public string TimeZone { get; set; }
 
-        public StartDto()
-        {
-            DateTime = DateTime.MinValue;
-            TimeZone = string.Empty;
-        }
-    }
-
-    public class EndDto
-    {
-        [JsonPropertyName("dateTime")]
-        public DateTime DateTime { get; set; }
-
-        [JsonPropertyName("timeZone")]
-        public string TimeZone { get; set; }
-
-        public EndDto()
+        public MeetingDateTimeDto()
         {
             DateTime = DateTime.MinValue;
             TimeZone = string.Empty;
