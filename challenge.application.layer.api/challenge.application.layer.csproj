@@ -16,8 +16,4 @@
     <ProjectReference Include="..\Challenger.domain.layer.api\challenge.domain.layer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="AutoMapper\" />
-  </ItemGroup>
-
 </Project>

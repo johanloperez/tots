@@ -14,7 +14,6 @@ namespace challenge.presentation.layer.Controllers
             _userService = userService;
         }
 
-        //[Authorize(AuthenticationSchemes = "Bearer")]
         [HttpGet("GetUsers")]
         public async Task<ActionResult<UserDto>> GetUsers()
         {
