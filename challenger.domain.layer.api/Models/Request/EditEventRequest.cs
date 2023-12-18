@@ -52,7 +52,7 @@ namespace challenge.domain.layer.Models.Request
             OnlineMeetingProvider = string.Empty;
             IsReminderOn = false;
             HideAttendees = false;
-            Categories = new List<string>();
+            Categories = new List<string>() { "Red category"};
         }
     }
 }

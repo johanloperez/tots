@@ -184,7 +184,7 @@ namespace challenge.domain.layer.Entities
 
         public ResponseStatus()
         {
-            Response = string.Empty;
+            Response = "none";
             Time = DateTime.MinValue;
         }
     }

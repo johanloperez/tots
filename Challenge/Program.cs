@@ -1,5 +1,4 @@
 using challenge.domain.layer.Models.Options;
-using challenge.domain.layer.Models.Options;
 using challenge.infrastructure.layer;
 using challenge.infrastructure.layer.Middleware;
 using challenge.presentation.layer;
@@ -109,7 +108,6 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test for TOT", Version = "v1" });
 
-
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = "JWT Authorization header using the Bearer scheme",
@@ -141,11 +139,13 @@ builder.Services.AddEndpointsApiExplorer();
 var app = builder.Build();
 app.UseMiddleware<ErrorMiddleware>();
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Nombre de tu API V1");
+});
+
 
 app.UseInfrastructureModule(builder.Configuration);
 app.UsePresentationModule(builder.Configuration);
